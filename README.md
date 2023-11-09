@@ -5,7 +5,7 @@ Simple frontend and a web server for retrieving, storing, and displaying informa
 ## Tasks
 
 - [X] Create minimal flask app
-- [ ] Connect app to retrieve results from external api
+- [X] Connect app to retrieve results from external api
 - [ ] Set templates to load webpages.
 - [ ] Set some db to store results.
 - [ ] Use docker to load app.
