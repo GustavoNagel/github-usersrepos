@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "github-usersrepos"
+version = "0.1.0"
+description = "simple frontend and a web server for retrieving, storing, and displaying information about GitHub users from GitHub’s publicly available endpoint"
+authors = ["Gustavo Nagel <gust.nagel@gmail.com>"]
+readme = "README.md"
+packages = [{include = "git_users"}]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
