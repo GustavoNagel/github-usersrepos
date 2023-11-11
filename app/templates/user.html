@@ -2,28 +2,41 @@
 <html>
 <head>
     <title>Simple GitHub Repository Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
 </head>
 <body>
-    <h1>Simple GitHub Repository Viewer</h1>
-    <form method="GET" action="" onsubmit="updateFormAction(event);">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required>
-        <button type="submit">Get</button>
-    </form>
+    <div class="container">
+        <h1>Simple GitHub Repository Viewer</h1>
+        <form method="GET" action="" onsubmit="updateFormAction(event);">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+            <button type="submit">Get</button>
+        </form>
 
-    {% if repositories %}
-        <h2>Repositories for {{ username }}</h2>
-        <ul>
-            {% for repository in repositories %}
-                <li>
-                    <h3>{{ repository.name }}</h3>
-                    <p><strong>URL:</strong> <a href="{{ repository.html_url }}" target="_blank">{{ repository.html_url }}</a></p>
-                    <p><strong>Description:</strong> {{ repository.description }}</p>
-                    <p><strong>Language:</strong> {{ repository.language }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+        {% if repositories %}
+            <h2>Repositories for {{ username }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Language</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for repository in repositories %}
+                        <tr>
+                            <td>{{ repository.name }}</td>
+                            <td><a href="{{ repository.html_url }}" target="_blank">{{ repository.html_url }}</a></td>
+                            <td>{{ repository.description }}</td>
+                            <td>{{ repository.language }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
     <script>
         function updateFormAction(event) {
             event.preventDefault();
