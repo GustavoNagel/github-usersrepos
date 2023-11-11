@@ -3,7 +3,7 @@
 from requests import HTTPError
 from flask import Blueprint, render_template, redirect, url_for, abort, current_app
 from app.github_client import list_repositories
-from app.save_user import save
+from app.connect_db import save
 
 users_bp = Blueprint('user', __name__)
 
