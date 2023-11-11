@@ -1,0 +1,35 @@
+version: '3.5'
+services:
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: myuser
+      MONGO_INITDB_ROOT_PASSWORD: mypassword
+      MONGO_INITDB_DATABASE: test
+    expose:
+      - 27017
+    volumes:
+      - mongo-data:/data/db
+      - ./init_mongodb.sh:/docker-entrypoint-initdb.d/init_mongodb.sh
+    networks:
+      - mynetwork
+  app:
+    build:
+      context: ./
+    container_name: usersrepos-flask-app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: mongodb://myuser:mypassword@mongodb:27017/test?authSource=admin
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

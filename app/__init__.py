@@ -2,7 +2,8 @@
 
 from flask import Flask
 from app.router import MainRouter
-from settings import Config
+from app.database import mongo
+from app.settings import Config
 
 
 def create_app() -> Flask:
@@ -12,5 +13,6 @@ def create_app() -> Flask:
     """
     app = Flask(__name__)
     app.config.from_object(Config())
+    mongo.init_app(app)
     MainRouter(app)
     return app
